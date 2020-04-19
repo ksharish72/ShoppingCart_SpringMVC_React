@@ -45,8 +45,8 @@ public class OrderDaoImp implements OrderDao {
 		Session session = getSession();
 		Criteria criteria = session.createCriteria(CartItem.class);
 		List<CartItem> cartItems = (List<CartItem>) criteria.list();
-		List<CartItem> filteredCartItems = cartItems.stream().filter(c -> c.getCustomerid() == customerid)
-				.collect(Collectors.toList());
+		List<CartItem> filteredCartItems = cartItems.stream()
+				.filter(c -> c.getCustomerid() == customerid && c.getOrderid() == 0).collect(Collectors.toList());
 		return placeOrder(customerid, filteredCartItems, price, session);
 	}
 
@@ -54,13 +54,13 @@ public class OrderDaoImp implements OrderDao {
 		// TODO Auto-generated method stub
 		Order newOrder = new Order();
 		String pattern = "MM/dd/yyyy HH:mm:ss";
-		// Create an instance of SimpleDateFormat used for formatting 
+		// Create an instance of SimpleDateFormat used for formatting
 		// the string representation of date according to the chosen pattern
 		DateFormat df = new SimpleDateFormat(pattern);
 
 		// Get the today date using Calendar object.
-		Date today = Calendar.getInstance().getTime();        
-		// Using DateFormat format method we can create a string 
+		Date today = Calendar.getInstance().getTime();
+		// Using DateFormat format method we can create a string
 		// representation of a date with the defined format.
 		String todayAsString = df.format(today);
 		newOrder.setCustomerid(customerid);
@@ -93,8 +93,7 @@ public class OrderDaoImp implements OrderDao {
 		Session session = getSession();
 		Criteria criteria = session.createCriteria(CartItem.class);
 		List<CartItem> cartItems = (List<CartItem>) criteria.list();
-		List<CartItem> filtred = cartItems.stream().filter(v -> v.getOrderid() == orderid)
-				.collect(Collectors.toList());
+		List<CartItem> filtred = cartItems.stream().filter(v -> v.getOrderid() == orderid).collect(Collectors.toList());
 		return filtred;
 	}
 
