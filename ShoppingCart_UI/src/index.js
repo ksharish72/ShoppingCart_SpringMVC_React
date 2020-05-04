@@ -332,6 +332,10 @@ class Dashboard extends Component {
     });
   }
   placeOrder() {
+    if (this.state.creditcard == "" || this.state.creditcard == null) {
+      alert("Please enter credit card details!");
+      return;
+    }
     let cartPrice = this.state.totalAmount;
     let taxPrice = (this.state.stateTax / 100) * this.state.totalAmount;
     let deliveryPrice = 0.02 * this.state.totalAmount;
@@ -350,7 +354,7 @@ class Dashboard extends Component {
       .then((response) => {
         alert(response.data);
         this.getCartItems(this.state.userInfo.id, this.state.products);
-        this.handleClose()
+        this.handleClose();
       })
       .catch((err) => {
         alert(err);

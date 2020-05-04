@@ -37,10 +37,4 @@ public class PricingController {
 		return tax;
 	}
 	
-//	/// get orderPriceDeatisl
-//	@RequestMapping(value = "/orderprice/{priceid}", method = RequestMethod.GET)
-//	public Price getOrderPrice(@PathVariable int priceid) {
-//		return pricingService.getOrderPrice(priceid);	
-//	}
-
 }

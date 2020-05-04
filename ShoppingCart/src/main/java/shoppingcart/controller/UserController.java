@@ -33,7 +33,7 @@ public class UserController {
 	public ResponseEntity<Object[]> loginCustomer(@RequestBody Customer customer) {
 		return userService.loginCustomer(customer);
 	}
-
+	
 	@RequestMapping(value = "/confirmEmail/{customerid}", method = RequestMethod.GET)
 	public String confirmEmail(@PathVariable int customerid) {
 		return userService.confirmEmail(customerid);

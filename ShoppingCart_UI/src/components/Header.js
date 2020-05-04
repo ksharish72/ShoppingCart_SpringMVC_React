@@ -280,13 +280,22 @@ class Header extends Component {
             >
               <CartScrollBar>{view}</CartScrollBar>
               <div className="action-block">
-                <button
-                  type="button"
-                  className={this.state.cart.length > 0 ? " " : "disabled"}
-                  onClick={() => this.props.checkout()}
-                >
-                  PROCEED TO CHECKOUT
-                </button>
+                {this.state.cart.length > 0 ? (
+                  <button
+                    type="button"
+                    className=""
+                    onClick={() => this.props.checkout()}
+                  >
+                    PROCEED TO CHECKOUT
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="disabled"
+                  >
+                    PROCEED TO CHECKOUT
+                  </button>
+                )}
               </div>
             </div>
           </div>

@@ -18,7 +18,6 @@ class Register extends React.Component {
     this.getRegister = this.getRegister.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.updateCountryState = this.updateCountryState.bind(this);
-    this.getRegister = this.getRegister.bind(this);
   }
   getRegister(event) {
     event.preventDefault();
@@ -35,7 +34,6 @@ class Register extends React.Component {
       .then((response) => {
         alert(response.data);
         console.log(response.data, "response of register api----");
-      
       })
       .catch((error) => {
         console.log("error-----------", error);
@@ -75,7 +73,7 @@ class Register extends React.Component {
     return (
       <div className="col-md-6 col-md-offset-3">
         <h2>Customer Registration</h2>
-        <form>
+        <form onSubmit={this.getRegister}>
           <div className="form-group">
             <label>First Name:</label>
             <input
@@ -148,11 +146,7 @@ class Register extends React.Component {
               })}
             </DropdownButton>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.getRegister}
-          >
+          <button type="submit" className="btn btn-primary">
             Register
           </button>
           <Link to="/login" className="btn btn-link">
